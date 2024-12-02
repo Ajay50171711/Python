@@ -70,6 +70,17 @@ person = {"name": "Alice", "age": 25}
 Set Types:
 set: Unordered, mutable collection of unique items.
 unique_numbers = {1, 2, 3, 3, 4}
+frozenset: Immutable version of a set
+
+a = frozenset([1, 2, 3])
+b = frozenset([3, 4, 5])
+# Union
+print(a | b)  # frozenset({1, 2, 3, 4, 5})
+# Intersection
+print(a & b)  # frozenset({3})
+# Difference
+print(a - b)  # frozenset({1, 2})
+
 
 
 None Type:
