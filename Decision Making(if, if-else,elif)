@@ -1,1 +1,45 @@
+Decision-Making Statements in Python
+Python provides the following decision-making statements:
+
+if Statement: Executes a block of code if a condition is True.
+if-else Statement: Executes one block of code if the condition is True and another block if the condition is False.
+if-elif-else Statement: Checks multiple conditions sequentially and executes the block of code for the first condition that is True.
+Nested if Statements: Allows placing one if statement inside another
+
+if statement
+x = 10
+if x > 5:  # Condition
+    print("x is greater than 5")  # Executes if the condition is True
+
+
+if-else Statement
+x = 3
+if x > 5:
+    print("x is greater than 5")
+else:
+    print("x is less than or equal to 5")
+
+
+if-elif-else Statement
+x = 7
+if x < 5:
+    print("x is less than 5")
+elif x == 7:
+    print("x is equal to 7")
+else:
+    print("x is greater than 5 but not equal to 7")
+
+
+Nested if Statements
+x = 10
+if x > 5:
+    if x % 2 == 0:
+        print("x is greater than 5 and even")
+    else:
+        print("x is greater than 5 and odd")
+else:
+    print("x is 5 or less")
+
+
+
 
