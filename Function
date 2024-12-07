@@ -1,1 +1,78 @@
+What is a function?
+A function is a block of reusable code that performs a specific task. Functions help you organize your code, make it easier to maintain, and avoid repeating yourself.
+
+A function is defined using the def keyword, followed by the function name and parentheses (). Any code that you want the function to execute goes inside the function, indented.
+
+
+Basic Structure of a Function in Python:
+
+def function_name():
+    # Code block
+    print("Hello, World!")
+
+How to Call a Function?
+Once you define a function, you can "call" or "invoke" it by simply using its name followed by parentheses ().
+
+def greet():
+    print("Hello, welcome to Python!")
+greet() 
+
+
+
+ Function with Parameters
+Functions can also accept parameters (or inputs). These are values you pass to the function when calling it. The function can then use these values inside its code.
+
+def greet(name):
+    print(f"Hello, {name}!")
+greet("Alice") 
+
+
+
+Function with Default Parameter
+You can also give a parameter a default value. If the user does not pass an argument for that parameter, the default value will be used.
+
+def greet(name="Guest"):
+    print(f"Hello, {name}!")
+greet("Alice")  # With argument
+greet()         # Without argument
+
+
+
+ Function with a Return Value
+Sometimes, we want a function to return a value instead of just printing something. This is useful when you need to use the result of the function later.
+
+def add(a, b):
+    return a + b
+result = add(3, 5)  
+print(result)  
+
+
+
+Function with 2 Parameters
+
+def greet(name, age):
+    print(f"Hello, {name}! You are {age} years old.")
+greet("Alice", 30)
+
+
+Multiple Return Values
+You can return more than one value from a function by separating them with commas.
+
+def add_and_subtract(a, b):
+    return a + b, a - b
+sum_result, diff_result = add_and_subtract(10, 3)
+print(f"Sum: {sum_result}, Difference: {diff_result}")
+
+
+Lambda Function
+add = lambda x, y: x + y
+result = add(5, 10)
+print(result)  # Output: 15
+
+
+
+
+
+
+
 
