@@ -1,0 +1,905 @@
+# print("hii")
+# #type conversion
+# a=10
+# b=3.5
+# c=a+b
+# print(type(c))
+
+#type casting
+
+# a=input('Enter a no.')
+# b=input('Enter a no.')
+# c=a+b
+# print(c)
+
+# a=int(input('Enter a no.'))
+# b=int(input('Enter a no.'))
+# c=a+b
+# print(c)
+
+#circle area
+
+# r=int(input('Enter radius of te circle.'))
+# a=3.14*r*r
+# print('Area of circle is ', a)
+
+#square area
+
+
+#average of 2 floating nos.
+
+# a=float(input('Enter first floating no..'))
+# b=float(input('Enter second floating no..'))
+# c=(a+b)/2
+# print('Average of 2 floating nos. is ',c)
+
+# a=int(input('Enter first no.'))
+# b=int(input('Enter second no.'))
+# if a>=b:
+#     print('True')
+# else:
+#      print('False')
+
+#concatenation
+# a='hello'
+# b='world'
+# c=a+b
+# print(c)
+
+# #length
+# print(len(c))
+
+# #indexing
+# print(c[5])
+
+# #slicing
+# print(c[2:6])
+# print(c[:5])
+# print(c[2:])
+
+# print(c[-8:])
+# print(c[-8:-2])
+# print(c[:])
+
+# a="i am a coder coder."
+# print(a.endswith("er."))
+# print(a.capitalize())
+# print(a.replace("am","are"))
+
+# #FIND
+# print(a.find("coder"))
+
+# #count
+# print(a.count("coder"))
+
+# a=input('Enter your first name ')
+# print(len(a))
+
+# b="the cost of ballon is 10 $"
+# print(b.count("$"))
+
+#11 june
+
+# a=int(input('Enter Marks '))
+# if a>=90:
+#     print('Grade A')
+# if a<90 and a>=80:
+#     print('Grade B')
+# if a<80 and a>=70:
+#     print('Grade C')
+# if a<70:
+#     print('Grade D')
+
+# a=int(input('Enter A '))
+# b=int(input('Enter B '))
+# c=int(input('Enter C '))
+# d=int(input('Enter D '))
+# if a>b:
+#     if a>c and a>d:
+#         print('A is greater')
+# elif b>c and b>d:
+#     print('B is Greater.')
+# elif c>b and c>d:
+#     print ('C is Greater.')
+# else:
+#     print('D is Greater')             
+
+# # a=int(input('Enter a no. '))
+# # if a%7==0:
+# #     print('No. is multiple of 7')
+# # else:
+# #     print('No. is not multiple of 7')
+
+#LIST
+
+# marks=[23,24,99,43,43]
+# print(marks)
+# student=['Karan', 78,'Delhi']
+# student[0]="Arjun"
+# print(student)
+# print(len(student))
+# print(student[:2])
+# print(student[:])
+# student.append(76)
+# print(student)
+# marks.sort()
+# print(marks)
+# marks.remove(43)
+# print(marks)
+# marks.pop(2)
+# print(marks)
+
+#12TH JUNE
+# #TUPLE
+# list=[]
+# 
+# m2=input('Enter Movie 2: ')
+# m3=input('Enter Movie 3: ')
+# list.append(input('Enter Movie 1: '))
+# list.append(m2)
+# list.append(m3)
+# print(list)
+
+# l1=[1,2,3,2,1]
+# l2=[]
+# l2=l1.copy()
+# l2.reverse()
+# if l1==l2:
+#     print('list is palindrome')
+# else:
+#     print('list is not palindrome')
+
+
+# #count
+# tuple=('C','D','A','A','B','B','A',)
+# print(tuple.count('A'))
+# print(type(tuple))
+
+# #converting tuple to list
+# list=list(tuple)
+# print(list)
+# print(type(list))
+
+# #sorting list
+# list.sort()
+# print(list)
+
+#DICTIONARY
+
+# dict={"name":"manasi","cgpa":9.70, "marks":[98,99,97]}
+# print(dict["name"])
+# dict["grade"]="O"
+# print(dict)
+
+#nested dict
+# dict={"name":"manasi","cgpa":9.70, "marks":{"sci":98, "maths":99, "eng":97}}
+# print(dict["marks"])
+# print(dict["marks"]["sci"])
+# print(dict.keys())
+# print(dict.values())
+# print(dict.items())
+# print(dict.get("marks"))
+# dict.update({"certification":7, "score":98})
+# print(dict)
+
+#13th june
+
+# set={'ram','shyam','raj','rahul'}
+# set.add('soham')
+# print(set)
+# set.remove('shyam')
+# print(set)
+# x=set.pop()
+# print(set)
+# print(x)
+# set2={'pari','riya','ram'}
+# y=set.union(set2)
+# print(y)
+# set2={'pari','riya','ram'}
+# z=set.intersection(set2)
+# print(z)
+# set2.clear()
+# print(set2)
+
+# dict={'table':['a piece of furniture','list of facts and figures'], 'cat':'a small animal'}
+# print(dict)
+
+# set={'python','java','c++','python','javascript','java','python','java','c++','c'}
+# x=len(set)
+# print('No. of classes required',x)
+
+# marks={}
+# phy=int(input('Enter Physics marks'))
+# chem=int(input('Enter Chemistry marks'))
+# math=int(input('Enter Maths marks'))
+# marks.update({'physics':phy})
+# marks.update({'chemistry':chem})
+# marks.update({'maths':math})
+# print(marks)
+
+# #above program can be done in this way also
+# marks1={}
+# marks1.update({'physics':int(input('Enter Physics marks'))})
+# print(marks1)
+
+# set=set()
+# set.add(9)
+# set.add('9.0')
+# print(set)
+
+#14th june
+
+# i=1
+# while i<=100:
+#     print(i)
+#     i+=1
+
+# i=100
+# while i>=1:
+#     print(i)
+#     i-=1
+
+# a=1
+# b=int(input('Enter a no: '))
+# while a<=10:
+#     print(b*a)
+#     a+=1
+
+
+# b=int(input('Enter a no: '))
+# i=b
+# while i<=b*10:
+#     print(i)
+#     i+=b
+
+# a=[1,4,9,16,25,36,49,64,81,100]
+# b=len(a)
+# i=0
+# while i<b:
+#     print(a[i])
+#     i+=1
+
+# a=['SUN','MON','TUE','WED','THUR','FRI','SAT']
+# i=1
+# b=len(a)
+# while i<=3:
+#     print('week',i)
+#     j=0
+#     while j<b:
+#         print(a[j])
+#         j+=1
+#     i+=1
+
+# a=[1,4,9,16,25,36,49,64,81,100]
+# b=len(a)
+# j=0
+# while j<b:
+#     print(a[j])
+#     j+=1
+# i=int(input('Select any number from above given numbers: '))
+# k=0
+# while k<b:
+#     if i==a[k]:
+#       print('The no. is at index',k)
+#       break
+#     else:
+#         k+=1
+
+# i=int(input('Enter no: '))
+# a=0
+# b=1
+# print (a)
+# print (b)
+# j=1
+# while j<=i:
+#     c=a+b
+#     print(c)
+#     a=b
+#     b=c
+#     j+=1
+
+# 17th June 
+
+# list=[1,2,3]
+# for a in list:
+#     print(a)
+
+# i=1
+# while i<=100:
+#     if i%7==0:
+#        i+=1
+#        continue 
+                
+#     print(i)
+#     i+=1
+
+# a=[]
+# a.append(int(input('Enter no. 1: ')))
+# a.append(int(input('Enter no. 2: ')))
+# a.append(int(input('Enter no. 3: ')))
+# a.append(int(input('Enter no. 4: ')))
+# a.sort(reverse=True)
+# print(a[0])
+
+# a=[]
+# a.append(int(input('Enter no. 1: ')))
+# a.append(int(input('Enter no. 2: ')))
+# a.append(int(input('Enter no. 3: ')))
+# a.append(int(input('Enter no. 4: ')))
+# print(a)
+# max=a[0]
+# for b in a:
+#     if max<b:
+#         max=b
+
+# print(max)
+
+#PENDING....................
+
+# a=(1,2,3,4)
+# x=int(input('Enter the value of x: '))
+# for b in a:
+#     if x==b:
+#         print(b)
+#         print('number is found.')
+#         break
+    # else:
+    #     print('number not found.')
+
+# b=int(input('Enter a no: '))
+# for b in range(b,(b*10)+1,b):
+#     print(b)
+
+# n=int(input('Enter a no: '))
+# a=1
+# b=1
+# while a<=n:
+#     b*=a
+#     a+=1
+    
+# print(b)
+
+
+# sum = 1
+# i=1
+# n=int(input("enter "))
+# while(i<=n):
+#     sum*=i
+#     i+=1
+# print(sum)    
+
+# for b in range(10):
+#     pass
+# print('hi')
+
+"""18TH JUNE
+FUNCTIONS """
+
+# list1=[1,3,5,7,9]
+# list2=[0,2,4,6,8,10]
+# list3=[1,2,3,4,5,6,7,8,9,10]
+# def length_list(list):
+#     print(len(list))
+    
+# length_list(list1)
+# length_list(list2)
+# length_list(list3)
+
+#default agrgument
+# list1=[1,3,5,7,9]
+# list2=[0,2,4,6,8,10]
+# list3=[1,2,3,4,5,6,7,8,9,10]
+# def length_list(list=list1):
+#     print(len(list))
+    
+# length_list()
+
+
+# a=
+# b=
+
+# def sum(a,b):
+#     print(a+b)
+
+# sum(int(input('Enter no. 1: ')),int(input('Enter no. 2: ')))
+
+# def sum(a,b=10):
+#     print(a+b)
+
+# sum( int(input('Enter no. 2: ')))
+
+# def my_function(fname):
+#   print("TEN "+ fname)
+
+# my_function("THOUSAND")
+# my_function("LAKHS")
+# my_function("CRORES")
+
+# a=[1,2,3,4,5,6,7,8,9,10]
+
+# def elements(list):
+#     i=0
+#     while i<=len(a):
+#         print([i])
+#         i+=1
+
+
+# elements(a)
+
+#factorial
+
+# def factorial(i):
+#     f=1
+
+#     if(i==1 or i==0):
+#         return 1
+#     while i>1: 
+#         f*=i
+
+#         i-=1
+#     print(f)
+        
+# factorial(5)
+
+#dollars to rupee
+# a=int(input("ENTER DOLLARS $ "))
+# def inr(n):
+#     n=n*80
+#     print(n,'RUPEES')
+
+# inr(a)
+
+
+#rupee to dollars
+# a=int(input("ENTER RUPEES $ "))
+# def inr(n):
+#     n=n/80
+#     print(n,'$')
+
+# inr(a)
+
+#RECURSION
+# def show(n):
+#     if(n==0):
+#         return 1
+#     print(n)
+#     show(n-1)
+
+# show(5)
+
+
+# def fact(n):
+#     if n == 0 or n == 1:
+#         return 1
+#     else:
+#         return n * fact(n - 1)
+
+# result = fact(5)
+# print(result)
+
+# #file handling
+
+
+# file = open('example.txt', 'r')
+# content = file.read()
+# print(content)
+# file.close()
+
+# file = open('m.txt', 'w')
+# file.write("holaaaaaaa")
+# file.close()
+# file = open('m.txt', 'r')
+# a = file.read()
+# print(a)
+# file.close()
+# file = open('m.txt', 'r+')
+# file.write("heloooooo")
+# file = open('m.txt', 'w+')
+# file.write("manasi")
+# file.close()
+# file = open('m.txt', 'a')
+# file.write("1234567890")
+# file = open('m.txt','r')
+# a = file.read()
+# print(a)
+# file.close()
+
+
+
+#21th June
+#OBJECT ORIENTED......CLASS N OBJECT
+
+# class Student:
+#     name="manasi"
+#     marks=99
+
+# s1=Student()         #obj of above class
+# print(s1.name)
+# print(s1.marks)                    
+# 
+
+# class student:
+#     def __init__(self):
+#         print(2+3)
+#         name="Manasi"
+#         print(name)
+
+# s1=student()
+
+# class student:
+#     def __init__(self,fullname):
+#         self.name=fullname
+
+#     def hello(self):
+#         print("hello",self.name)
+
+# s1=student("MANASI")
+# s1.hello()
+        
+
+# class Animal:
+#     def __init__(self,name,species):
+#         self.name=name
+#         self.species=species
+
+#     def intro(self):
+#         print("This is a ",self.species,self.name)
+
+# a=Animal("RABBIT","MINI LOG")
+# a.intro()   
+
+# class Marks:
+#     def __init__(self,name,phy,chem,maths):
+#         self.name=name
+#         self.phy=phy
+#         self.chem=chem
+#         self.maths=maths
+
+#     def avg(self):
+#        a=(self.phy+self.chem+self.maths)/3
+#        print("Physics=",self.phy)
+#        print("Chemistry=" ,self.chem) 
+#        print("Maths=" ,self.maths) 
+       
+#        print("Average of above 3 subjects of ",self.name," is ",a)
+
+
+# b=Marks("Manasi",97,98,99)
+# c=Marks("Harsh",99,99,99)
+# b.avg()
+# c.avg()
+
+
+# class Car:
+#     def __init__(self,name,model,year):
+#         self.name=name
+#         self.mode=model
+#         self.year=year
+        
+# def disp(self):
+       
+#        print("Car=",self.name,self.mode,self.year)
+
+# b=Car("TOYOTA","COROLLA",2021)
+# b.disp()
+
+
+# class Car:
+#     def __init__(self, name, model, year):
+#         self.name = name
+#         self.model = model  # Fixed typo from 'mode' to 'model'
+#         self.year = year
+    
+#     def disp(self):
+#         print("Car =", self.name, self.model, self.year)
+
+# # Creating an instance of the Car class
+# b = Car("TOYOTA", "COROLLA", 2021)
+# # Calling the disp method to display car details
+# b.disp()
+
+#24th JUNE
+
+# class Account:
+#     def __init__(self,name,acc_no,bal):
+#         self.name = name
+#         self.acc_no=acc_no
+#         self.bal=bal
+#         print("The balance in your account is ",self.bal)
+
+#     def credit(self,cr):
+#         print("The credited amount is ",cr)
+#         print("Balanced amount is ",cr+self.bal)
+
+#     def debit(self,deb):
+#         print("The debited amount is ",deb)
+#         print("Balanced amount is ",self.bal-deb)
+
+# a=Account("Manasi",987654321,100000)
+# a.credit(10000)
+# a.debit(1000)
+
+# class learn_static:
+#     @staticmethod
+#     def static():
+#         print("Today I am going to learn Static Method. ")
+
+# learn_static.static()
+
+# class Age:
+#     @staticmethod
+#     def disp():
+#         name=input("Enter Name: ")
+#         age=int(input("Enter Age: "))
+#         year=(2024-age)+100
+#         print("The year you will turn 100 years is ",year)
+
+# Age.disp()
+
+# class Student:
+#     def __init__(self,name):
+#         self.name=name
+        
+# s1=Student("Manasi")
+# print(s1.name)
+
+# del (s1.name)     #deleting an object
+# print(s1.name)
+
+
+# class Account:
+#     def __init__(self,acc_no,acc_pass):
+#         self.acc_no =acc_no
+#         self.acc_pass=acc_pass
+
+# a1=Account("987654321","manasi@2005" )
+# print(a1.acc_no)
+# print(a1.acc_pass)
+
+
+# class Account:
+#     def __init__(self,acc_no,acc_pass):
+#         self.acc_no =acc_no
+#         self.__acc_pass=acc_pass
+
+# a1=Account("987654321","manasi@2005" )
+# print(a1.acc_no)
+# print(a1.__acc_pass)
+
+
+#25th JUNE
+#INHERITANCE
+
+# class Car:
+#     def start():
+#         print("Car started")
+#     def stop():
+#         print("Car stopped")
+        
+# class Toyota(Car):
+#     def __init__(self,name):
+#         self.name=name
+#         print(self.name)
+
+# t=Toyota("hjf")
+# t.start()
+# t.stop()
+
+# class Car:
+#     def start(self):
+#         print("Car started")
+    
+#     def stop(self):
+#         print("Car stopped")
+        
+# class Toyota(Car):
+#     def __init__(self, name):
+#         super().__init__()  # Call the initializer of the Car class
+#         self.name = name
+#         print(self.name)
+
+# # Creating an instance of Toyota
+# t = Toyota("Fortuner")
+# t.start()  # Output: Car started
+# t.stop()   # Output: Car stopped
+
+
+
+#multilevel
+
+# class A:
+ 
+#     def __init__(self, name, roll,):
+#         self.name = name
+#         self.roll = roll
+        
+ 
+
+# class B(A):
+    
+#     def __init__(self, age, name, roll):
+#         super().__init__(name, roll)
+#         self.age = age
+ 
+
+# class C(B):
+#     # Method to Print Data
+#     def __init__(self, age, name, roll):
+#         super().__init__(age, name, roll)
+
+#         def Print_Data(self):
+#              print("The Name is :", self.name)
+#              print("The Age is : ",self.age)
+#              print("The Roll is : ",self.roll)
+    
+# # Creating Object of Base Class
+# a= C(21, "Lokesh Singh", 25)
+ 
+# # Printing the data with the help of derived class
+# a.Print_Data()
+
+# class A:
+#     def __init__(self, name, roll):
+#         self.name = name
+#         self.roll = roll
+
+# class B(A):
+#     def __init__(self, age, name, roll):
+#         super().__init__(name, roll)  # Initialize attributes from class A
+#         self.age = age
+
+# class C(B):
+#     def __init__(self, age, name, roll):
+#         super().__init__(age, name, roll)  # Initialize attributes from class B
+
+#     def Print_Data(self):
+#         print("The Name is:", self.name)
+#         print("The Age is:", self.age)
+#         print("The Roll is:", self.roll)
+
+# # Creating an object of class C
+# a = C(21, "Lokesh Singh", 25)
+
+# # Printing the data using the Print_Data method
+# a.Print_Data()
+
+
+#multilevel inheritance
+# class A:
+#     def funA(SELF):
+#         print("this is a A class")
+
+# class B(A):
+#     def funB(self):
+#         print("this is a B class")
+
+# class C(B):
+#     def funC(self):
+#         print("this is a class C")
+
+# obj = C()
+# obj.funA()  
+# obj.funB()      
+# obj.funC()                           
+
+
+#MULTIPLE INHERITANCE
+# class A:
+#     def funA(SELF):
+#         print("this is a A class")
+
+
+# class B:
+#     def funB(self):
+#         print("this is a B class")
+
+# class C(B,A):
+#     def funC(self):
+#         print("this is a class C")
+
+# obj = C()
+# obj.funA()  
+# obj.funB()      
+# obj.funC()                    
+
+#EXCEPTIION HANDLILNG
+
+# a=3
+# b=0
+# c=a/b
+# print(c)
+
+# print("hiiii")
+
+
+# try:
+#     a=4
+#     b=0
+#     c=a/b
+#     print(c)
+
+# except ZeroDivisionError:
+#     print("Error found")
+
+# print("IMPORTANT LECTURE")
+
+# A=(input("Enter no. "))
+# print("Multiplication table of ",A, "is")
+# try:
+#     for i in range(1,11):
+#         print(A,"X",i,"=",A*i)    #observe
+# except:
+#     print("Invaild Input")
+
+
+
+# A=(input("Enter no. "))
+# print("Multiplication table of ",A, "is")
+# try:
+#     for i in range(1,11):
+#         print(int(A),"X",i,"=",int(A)*i)         #observe
+# except:
+#     print("Invaild Input")
+
+# try:
+#     file = open('non_existent_file.txt', 'r')  # This will raise a FileNotFoundError
+#     x = 10 / 0  # This will raise a ZeroDivisionError
+# except FileNotFoundError:
+#     print("Error: File not found!")
+# except ZeroDivisionError:
+#     print("Error: Division by zero!")
+
+
+#search n count vowels in the sent
+# def count_vowels(sentence):
+#     vowels = "aeiouAEIOU"
+#     vowel_count = 0
+    
+#     for char in sentence:
+#         if char in vowels:
+#             vowel_count += 1
+    
+#     return vowel_count
+
+# # Example usage:
+# sent=input("Enter sentence  ")
+# result = count_vowels(sent)
+# print("The number of vowels in the sentence is:", result)
+   
+
+#2nd JULY
+
+# from tkinter import *
+
+# root=Tk()
+# root.geometry("800x600")
+# root.maxsize(1000,700)
+# root.minsize(100,70)
+# root.title("PYTHON")
+# a=Label(text="WELCOME TO MUMBAI")
+# a.pack()
+# b=PhotoImage(file="burger.png")
+# c=Label(image=b)
+# c.pack()
+# root.mainloop()
+
+
+# from tkinter import *
+
+# from PIL import Image, ImageTk
+# root=Tk()
+# root.geometry("1000x700")
+# root.title("PYTHON")
+# a=Label(text="WELCOME TO MUMBAI")
+# a.pack(pady=50)  # Adding padding around the label
+# i=Image.open("bg.jpg")
+# photo=ImageTk.PhotoImage(i)
+# c=Label(i=photo) 
+# c.pack(pady=20)  # Adding padding around the label
+
+# # button =Button(r, text='Stop', width=25, command=r.destroy)
+# # button.pack()
+
+# root.mainloop()
+
+# print("Welcome to Python".split())
