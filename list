@@ -67,18 +67,19 @@ Adds a single item to the end of the list.
 fruits = ["apple", "banana"]
 fruits.append("cherry")
 print(fruits)  # Output: ["apple", "banana", "cherry"]
+
 extend():
 Extends a list by adding multiple items from another list.
-
 fruits = ["apple", "banana"]
 fruits.extend(["cherry", "date"])
 print(fruits)  # Output: ["apple", "banana", "cherry", "date"]
+
 insert():
 Inserts an element at a specific index.
-
 fruits = ["apple", "banana"]
 fruits.insert(1, "blueberry")
 print(fruits)  # Output: ["apple", "blueberry", "banana"]
+
 3. Remove Elements
 You can remove items using remove(), pop(), and del.
 
@@ -88,19 +89,20 @@ Removes the first occurrence of a specified value.
 fruits = ["apple", "banana", "cherry"]
 fruits.remove("banana")
 print(fruits)  # Output: ["apple", "cherry"]
+
 pop():
 Removes and returns the item at the specified index (default is the last index).
-
 fruits = ["apple", "banana", "cherry"]
 item = fruits.pop(1)  # Removes the item at index 1
 print(item)  # Output: "banana"
 print(fruits)  # Output: ["apple", "cherry"]
+
 del:
 Deletes an item at a specific index.
-
 fruits = ["apple", "banana", "cherry"]
 del fruits[1]
 print(fruits)  # Output: ["apple", "cherry"]
+
 Common List Methods
 Python provides several built-in methods for list manipulation. Some commonly used ones include:
 
