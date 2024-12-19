@@ -1,0 +1,99 @@
+What is a Tuple?
+A tuple is a collection of items in Python that:
+
+Is ordered: The order of items is maintained.
+Is immutable: Once created, you cannot change its elements (no adding, removing, or modifying items).
+Can contain mixed data types: You can store numbers, strings, or even other tuples!
+Tuples are defined using parentheses ( ), and the items are separated by commas.
+
+How to Create a Tuple?
+Empty Tuple:
+
+empty_tuple = ()
+print(empty_tuple)  # Output: ()
+
+Tuple with One Item: Add a comma after the single item, or else Python treats it as a normal value:
+single_item_tuple = (5,)
+print(single_item_tuple)  # Output: (5,)
+
+Tuple with Multiple Items:
+fruits = ("apple", "banana", "cherry")
+print(fruits)  # Output: ('apple', 'banana', 'cherry')
+
+Mixed Data Types:
+mixed_tuple = (1, "hello", 3.14)
+print(mixed_tuple)  # Output: (1, 'hello', 3.14')
+
+Without Parentheses: You can skip the parentheses, and Python will still treat it as a tuple:
+numbers = 1, 2, 3
+print(numbers)  # Output: (1, 2, 3)
+
+Accessing Tuple Items
+You can access tuple elements using indexing, where the first element is at index 0.
+
+fruits = ("apple", "banana", "cherry")
+
+# Access first item
+print(fruits[0])  # Output: apple
+
+# Access last item (negative indexing)
+print(fruits[-1])  # Output: cherry
+
+Why are Tuples Immutable?
+Since tuples are immutable, you cannot:
+Add items
+Remove items
+Change items
+This makes tuples useful when you want data to remain constant.
+
+Tuple Methods
+Even though tuples are immutable, you can still do some things:
+-----------------------------------------------------------------
+
+Count Items: Count how many times an item appears.
+numbers = (1, 2, 2, 3, 2)
+print(numbers.count(2))  # Output: 3
+
+Find an Item's Index: Get the position of an item.
+numbers = (10, 20, 30, 40)
+print(numbers.index(30))  # Output: 2
+
+Loop Through a Tuple
+You can use a loop to go through each item in a tuple.
+fruits = ("apple", "banana", "cherry")
+for fruit in fruits:
+    print(fruit)
+Output:
+apple
+banana
+cherry
+
+Tuple Packing and Unpacking
+Packing: Combine multiple values into a tuple.
+Unpacking: Split a tuple into individual variables.
+
+# Packing
+person = ("Alice", 25, "Engineer")
+
+# Unpacking
+name, age, profession = person
+print(name)       # Output: Alice
+print(age)        # Output: 25
+print(profession) # Output: Engineer
+
+When to Use Tuples?
+When the data shouldn't change (like a list of days in a week).
+For faster operations since tuples are slightly faster than lists.
+When you need a constant sequence to use as dictionary keys.
+
+Summary
+Tuples are ordered, immutable, and can hold mixed data types.
+Use parentheses ( ) to define them.
+Access elements using indexing.
+Great for constant, unchanging data.
+
+
+
+
+
+
