@@ -156,5 +156,23 @@ print(evens)  # Output: [0, 2, 4, 6, 8]
 animals = ["cat", "dog", "bird", "fish"]
 for i in range(len(animals)):
     print(f"Index {i} contains {animals[i]}")
+---------------------------------------------------------
+
+# Input: predefined list of numbers
+numbers = [10, 15, 22, 9]
+
+# To store results
+result = []
+
+# Loop through the list
+for num in numbers:
+    if num % 2 == 0:
+        result.append((num, "even"))  # Add tuple to the list
+    else:
+        result.append((num, "odd"))   # Add tuple to the list
+
+# Print the result
+print(result)
+
 
 
