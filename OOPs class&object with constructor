@@ -1,0 +1,81 @@
+class MyClass:
+    def set_value(value):  # Missing 'self'
+        self.value = value  # Error: 'self' is not defined
+
+# This will raise an error
+obj = MyClass()
+obj.set_value(10)
+
+------------------------------------------------------
+class Dog:
+    def display_details(self):
+        print(f"Name: {self.name}, Breed: {self.breed}")
+dog1 = Dog()
+dog1.name = "Buddy"
+dog1.breed = "Golden Retriever"
+dog1.display_details()  # Output: Name: Buddy, Breed: Golden Retriever
+--------------------------------------------------------------------------------------------
+with constructor
+-----------------
+
+class Dog:
+    def __init__(self, name, breed):
+        self.name = name
+        self.breed = breed
+
+    def display_details(self):
+        print(f"Name: {self.name}, Breed: {self.breed}")
+
+# Create object
+dog1 = Dog("Buddy", "Golden Retriever")
+dog1.display_details()  # Output: Name: Buddy, Breed: Golden Retriever
+
+------------------------------------------------------------------------------------------------------
+class method
+---------------------
+class Example:
+    class_variable = "I am a class variable"
+
+    @classmethod
+    def class_method(cls):
+         print(f"Accessing class_variable: {cls.class_variable}")
+Example.class_method()      
+---------------------------------------------------------------------
+static method
+-----------------
+class Example:
+    class_variable = "I am a class variable"
+
+    @staticmethod
+    def static_method():
+         print(f"Accessing class_variable: {class_variable}")
+Example.static_method()      
+--------------------------
+for practice
+------------------------
+class TemperatureConverter:
+  
+
+    # Static method for conversion
+    @staticmethod
+    def celsius_to_fahrenheit(celsius):
+        return (celsius * 9/5) + 32
+
+    @staticmethod
+    def fahrenheit_to_celsius(fahrenheit):
+        return (fahrenheit - 32) * 5/9
+
+# Use static methods
+temp_f = TemperatureConverter.celsius_to_fahrenheit(25)
+temp_c = TemperatureConverter.fahrenheit_to_celsius(77)
+print(f"25°C in Fahrenheit: {temp_f}")  # Output: 25°C in Fahrenheit: 77.0
+print(f"77°F in Celsius: {temp_c}")     # Output: 77°F in Celsius: 25.0
+
+
+
+
+
+
+
+
+
