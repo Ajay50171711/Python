@@ -1,0 +1,108 @@
+In Python, inheritance allows one class (child class) to inherit the attributes and methods of another class (parent class). Python supports several types of inheritance, and here are the main types:
+
+1. Single Inheritance
+In single inheritance, a subclass inherits from a single parent class.
+
+class Animal:
+    def sound(self):
+        return "Some sound"
+
+class Dog(Animal):
+    def sound(self):
+        return "Bark"
+
+dog = Dog()
+print(dog.sound())  # Output: Bark
+
+
+2. Multiple Inheritance
+In multiple inheritance, a subclass inherits from more than one parent class.
+
+class Animal:
+    def sound(self):
+        return "Some sound"
+
+class Mammal:
+    def breathe(self):
+        return "Breathe air"
+
+class Dog(Animal, Mammal):
+    def sound(self):
+        return "Bark"
+
+dog = Dog()
+print(dog.sound())  # Output: Bark
+print(dog.breathe())  # Output: Breathe air
+
+3. Multilevel Inheritance
+In multilevel inheritance, a class is derived from a class which is also derived from another class.
+
+class Animal:
+    def sound(self):
+        return "Some sound"
+
+class Mammal(Animal):
+    def has_fur(self):
+        return True
+
+class Dog(Mammal):
+    def sound(self):
+        return "Bark"
+
+dog = Dog()
+print(dog.sound())  # Output: Bark
+print(dog.has_fur())  # Output: True
+
+4. Hierarchical Inheritance
+In hierarchical inheritance, multiple classes inherit from a single parent class.
+
+
+class Animal:
+    def sound(self):
+        return "Some sound"
+
+class Dog(Animal):
+    def sound(self):
+        return "Bark"
+
+class Cat(Animal):
+    def sound(self):
+        return "Meow"
+
+dog = Dog()
+cat = Cat()
+
+print(dog.sound())  # Output: Bark
+print(cat.sound())  # Output: Meow
+
+5. Hybrid Inheritance
+Hybrid inheritance is a combination of two or more types of inheritance, such as multilevel inheritance and multiple inheritance.
+
+class Animal:
+    def sound(self):
+        return "Some sound"
+
+class Mammal(Animal):
+    def has_fur(self):
+        return True
+
+class Bird(Animal):
+    def can_fly(self):
+        return True
+
+class Bat(Mammal, Bird):
+    def sound(self):
+        return "Screech"
+
+bat = Bat()
+print(bat.sound())  # Output: Screech
+print(bat.has_fur())  # Output: True
+print(bat.can_fly())  # Output: True
+
+
+Summary of Inheritance Types:
+Single Inheritance: A single child class inherits from one parent class.
+Multiple Inheritance: A child class inherits from multiple parent classes.
+Multilevel Inheritance: A child class inherits from a class that is derived from another class.
+Hierarchical Inheritance: Multiple child classes inherit from a single parent class.
+Hybrid Inheritance: A combination of multiple inheritance types, typically multilevel and multiple inheritance.
