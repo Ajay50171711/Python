@@ -1,0 +1,164 @@
+Python doesn't allow two methods with the same name in the same class. However, we can simulate method overloading using default arguments or variable-length arguments:
+
+class Calculator:
+    def add(self, a, b=0, c=0):
+        return a + b + c
+
+# Instantiate the class
+calc = Calculator()
+
+# Call the add method with different numbers of arguments
+print(calc.add(5))         # Output: 5 (only a is used)
+print(calc.add(5, 10))     # Output: 15 (a and b are used)
+print(calc.add(5, 10, 15)) # Output: 30 (a, b, and c are used)
+
+-----------------------------------------------------------------------------------------------------------
+You can also use *args to handle a variable number of arguments:
+class Calculator:
+    def add(self, *args):
+        return sum(args)
+
+# Instantiate the class
+calc = Calculator()
+
+# Call the add method with different numbers of arguments
+print(calc.add(5))               # Output: 5
+print(calc.add(5, 10))           # Output: 15
+print(calc.add(5, 10, 15, 20))   # Output: 50
+
+----------------------------------------------------------
+
+
+class Greeting:
+    def say_hello(self, name="Guest", age=None):
+        if age is not None:
+            return f"Hello, {name}! You are {age} years old."
+        return f"Hello, {name}!"
+
+# Instantiate the class
+greet = Greeting()
+
+# Call the method with different arguments
+print(greet.say_hello())                 # Output: Hello, Guest!
+print(greet.say_hello("Alice"))          # Output: Hello, Alice!
+print(greet.say_hello("Bob", 25))        # Output: Hello, Bob! You are 25 years old.
+
+--------------------------------------------------------------------------------
+
+def print_kwargs(**kwargs):
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")
+
+# Usage
+print_kwargs(name="Alice", age=30, city="New York")
+# Output:
+# name: Alice
+# age: 30
+# city: New York
+
+--------------------------------------------------------------------------------
+
+def order_summary(order_id, customer_name, **kwargs):
+    print(f"Order ID: {order_id}")
+    print(f"Customer Name: {customer_name}")
+    for key, value in kwargs.items():
+        print(f"{key.capitalize()}: {value}")
+
+# Usage
+order_summary(101, "Alice", product="Laptop", price=1200, delivery_date="2025-01-10")
+# Output:
+# Order ID: 101
+# Customer Name: Alice
+# Product: Laptop
+# Price: 1200
+# Delivery_date: 2025-01-10
+
+-------------------------------------------------------------------------------------
+
+method overriding
+
+----------------------------
+
+# Parent Class
+class Animal:
+    def sound(self):
+        print("Some generic animal sound")
+
+# Child Class 1
+class Dog(Animal):
+    def sound(self):
+        print("Woof! Woof!")  # Dog's sound
+
+# Child Class 2
+class Cat(Animal):
+    def sound(self):
+        print("Meow! Meow!")  # Cat's sound
+
+# Using the classes
+animal = Animal()
+animal.sound()  # Output: Some generic animal sound
+
+dog = Dog()
+dog.sound()  # Output: Woof! Woof!
+
+cat = Cat()
+cat.sound()  # Output: Meow! Meow!
+---------------------------------------------------------------------------
+How to Call the Parent's Method in Overriding
+Example with super():
+
+class Animal:
+    def sound(self):
+        print("Some generic animal sound")
+
+class Dog(Animal):
+    def sound(self):
+        # Call the parent class method
+        super().sound()
+        print("Woof! Woof!")  # Add Dog-specific sound
+
+# Usage
+dog = Dog()
+dog.sound()
+# Output:
+# Some generic animal sound
+# Woof! Woof!
+------------------------------------------------------------------------------
+Example with Direct Parent Class Call:
+
+class Animal:
+    def sound(self):
+        print("Some generic animal sound")
+
+class Dog(Animal):
+    def sound(self):
+        # Call the parent class method directly
+        Animal.sound(self)
+        print("Woof! Woof!")  # Add Dog-specific sound
+
+# Usage
+dog = Dog()
+dog.sound()
+
+----------------------------------------------------------------------------
+# Base Class
+class Animal:
+    def sound(self):
+        print("Some generic animal sound")
+
+# Intermediate Class (inherits from Animal)
+class Mammal(Animal):
+    def sound(self):
+        super().sound()  # Call the parent class method (Animal)
+        print("Some mammal sound")
+
+# Child Class (inherits from Mammal)
+class Dog(Mammal):
+    def sound(self):
+        super().sound()  # Call the parent class method (Mammal)
+        print("Woof! Woof!")  # Dog's specific sound
+
+# Using the classes
+dog = Dog()
+dog.sound()  # This will call sound() from Dog, Mammal, and Animal
+-----------------------------------------------------------------------------------------
