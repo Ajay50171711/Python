@@ -1,0 +1,84 @@
+What is an Exception?
+An exception is an error that occurs during program execution, such as dividing by zero, accessing a non-existent file, or using an undefined variable.
+
+# A simple error
+num = 10 / 0  # This will raise a ZeroDivisionError
+
+Basic Exception Handling with try and except
+The try block contains the code that might cause an exception. The except block catches and handles the exception
+
+try:
+    num = 10 / 0
+except ZeroDivisionError:
+    print("You can't divide by zero!")
+
+Handling Multiple Exceptions
+You can handle different types of exceptions separately.
+
+Example:
+try:
+    x = int(input("Enter a number: "))
+    y = 10 / x
+except ValueError:
+    print("Invalid input. Please enter a number.")
+except ZeroDivisionError:
+    print("You can't divide by zero.")
+
+
+Using else with try and except
+try:
+    num = int(input("Enter a number: "))
+    result = 100 / num
+except ZeroDivisionError:
+    print("Cannot divide by zero!")
+except ValueError:
+    print("Please enter a valid number.")
+else:
+    print("Result:", result)
+
+
+The finally Block
+try:
+    file = open("example.txt", "r")
+    content = file.read()
+except FileNotFoundError:
+    print("File not found.")
+finally:
+    print("Closing the file.")
+
+
+Raising Exceptions
+age = int(input("Enter your age: "))
+if age < 0:
+    raise ValueError("Age cannot be negative!")
+print("Your age is:", age)
+
+
+Custom Exceptions
+# Step 1: Create a custom exception class
+class NegativeNumberError(Exception):
+    pass  # Pass means no extra functionality for now
+
+# Step 2: Use the custom exception in your code
+try:
+    number = int(input("Enter a positive number: "))
+    if number < 0:
+        raise NegativeNumberError("Negative numbers are not allowed!")  # Trigger the custom exception
+    else:
+        print("You entered a valid number:", number)
+except NegativeNumberError as e:
+    print("Error:", e)  # Print the error message
+
+
+
+Nesting try Blocks
+try:
+    x = int(input("Enter a number: "))
+    try:
+        result = 10 / x
+    except ZeroDivisionError:
+        print("Inner: Cannot divide by zero.")
+except ValueError:
+    print("Outer: Please enter a valid number.")
+
+
