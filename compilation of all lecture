@@ -600,24 +600,31 @@ FUNCTIONS """
 
 #24th JUNE
 
-# class Account:
-#     def __init__(self,name,acc_no,bal):
-#         self.name = name
-#         self.acc_no=acc_no
-#         self.bal=bal
-#         print("The balance in your account is ",self.bal)
+class Account:
+    def __init__(self, name, acc_no, bal):
+        self.name = name
+        self.acc_no = acc_no
+        self.bal = bal
+        print(f"Account created for {self.name}. The balance in your account is {self.bal}")
 
-#     def credit(self,cr):
-#         print("The credited amount is ",cr)
-#         print("Balanced amount is ",cr+self.bal)
+    def credit(self, cr):
+        self.bal += cr  # Update the balance
+        print(f"The credited amount is {cr}")
+        print(f"Updated balance is {self.bal}")
 
-#     def debit(self,deb):
-#         print("The debited amount is ",deb)
-#         print("Balanced amount is ",self.bal-deb)
+    def debit(self, deb):
+        if deb > self.bal:  # Check for sufficient balance
+            print("Insufficient funds! Debit operation failed.")
+        else:
+            self.bal -= deb  # Update the balance
+            print(f"The debited amount is {deb}")
+            print(f"Updated balance is {self.bal}")
 
-# a=Account("Manasi",987654321,100000)
-# a.credit(10000)
-# a.debit(1000)
+# Test the class
+a = Account("Manasi", 987654321, 100000)
+a.credit(10000)
+a.debit(1000)
+a.debit(150000)  # Example of insufficient balance
 
 # class learn_static:
 #     @staticmethod
