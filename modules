@@ -1,0 +1,27 @@
+# import my_module
+# print(my_module.add(10, 5))       # Output: 15
+# print(my_module.subtract(10, 5)) # Output: 5
+
+# import my_module as m
+# print(m.add(10, 5))       # Output: 15
+# print(m.subtract(10, 5)) 
+
+# from my_module import add,subtract
+# print(add(10, 5))       # Output: 15
+# print(subtract(10, 5)) 
+
+# from my_module import *
+# print(add(10, 5))       # Output: 15
+# print(subtract(10, 5)) 
+
+# print(help("modules"))
+
+# from math import *
+# print(sqrt(25))
+# print(pi)
+
+# import math
+# print(dir(math))
+
+
+
