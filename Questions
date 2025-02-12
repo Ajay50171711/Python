@@ -1,0 +1,25 @@
+1)take a list which contain even and odd number
+and print even with even number and odd withb odd number
+
+2)create a list which contain even number and odd number and also crete a two empty list one is even and other is odd and append even number in even list and odd number in odd list
+
+3)take a 3 nunmber from user and find the largest value between them
+
+4)take a age from user and predict it is underage or overage or working person
+
+5)take a dictionary of student marks and find the second highest marks
+
+6)create a atm machine project which shows the total_balance,credit amount ,debit amount
+
+7) take a two list with certain element some element is common in list and take another a empty list and append common number in the empty list
+
+8)Count Vowels and Consonants: Write a program that takes a string as input and counts the number of vowels and consonants in it.
+
+9)Anagram Checker: Write a Python function that checks whether two strings are anagrams of each other (i.e., they contain the same characters but in different orders).
+
+10)Sum of Digits: Write a Python program that takes an integer and returns the sum of its digits
+
+11)
+
+
+
