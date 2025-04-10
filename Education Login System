@@ -1,0 +1,708 @@
+import tkinter as tk
+from tkinter import messagebox, simpledialog, ttk
+
+class LoginSystem:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Educational System Login")
+        self.root.geometry("400x300")
+        self.root.resizable(False, False)
+        
+        # Stored data dictionaries
+        self.admin_credential = {"admin": "admin123"}
+        self.student_credential = {"student1": "student123", "student2": "student456"}
+        self.faculty_credential = {"faculty1": "faculty123", "faculty2": "faculty456"}
+        
+        # Sample stored data
+        self.student_data = {
+            "student1": {
+                "name": "John Doe",
+                "age": 20,
+                "course": "Computer Science",
+                "semester": 4,
+                "contact": "john.doe@example.com"
+            },
+            "student2": {
+                "name": "Jane Smith",
+                "age": 22,
+                "course": "Information Technology",
+                "semester": 5,
+                "contact": "jane.smith@example.com"
+            }
+        }
+        
+        self.faculty_data = {
+            "faculty1": {
+                "name": "Dr. Alan Walker",
+                "department": "Computer Science",
+                "qualification": "PhD",
+                "courses": ["Data Structures", "Algorithms"]
+            },
+            "faculty2": {
+                "name": "Prof. Emily Chen",
+                "department": "Information Technology",
+                "qualification": "Masters",
+                "courses": ["Network Security", "Cloud Computing"]
+            }
+        }
+        
+        # Student results dictionary - Initialize with empty lists for each student
+        self.student_results = {
+            "student1": [],
+            "student2": []
+        }
+        
+        self.setup_ui()
+    
+    def setup_ui(self):
+        tk.Label(self.root, text="Educational System Login", font=("Arial", 16, "bold")).pack(pady=10)
+        
+        tk.Button(self.root, text="Admin", width=20, height=2, 
+                  bg="green", fg="white", 
+                  command=lambda: self.show_login("admin")).pack(pady=10)
+        
+        tk.Button(self.root, text="Faculty", width=20, height=2, 
+                  bg="orange", fg="white", 
+                  command=lambda: self.show_login("faculty")).pack(pady=10)
+        
+        tk.Button(self.root, text="Student", width=20, height=2, 
+                  fg="white", bg="blue", 
+                  command=lambda: self.show_login("student")).pack(pady=10)
+        
+        tk.Button(self.root, text="Exit", bg="red", fg="white", width=10, 
+                  command=self.root.destroy).pack(pady=10)
+    
+    def show_login(self, user_type):
+        self.root.withdraw()
+        login_window = tk.Toplevel(self.root)
+        login_window.title(f"{user_type.capitalize()} Login")
+        login_window.geometry("300x200")
+        login_window.resizable(False, False)
+        
+        # Add event handler to show the main window when login window is closed
+        login_window.protocol("WM_DELETE_WINDOW", lambda: self.on_login_close(login_window))
+        
+        tk.Label(login_window, text="Username:").pack()
+        username_entry = tk.Entry(login_window, width=25)
+        username_entry.pack()
+        
+        tk.Label(login_window, text="Password:").pack()
+        password_entry = tk.Entry(login_window, width=25, show="*")
+        password_entry.pack()
+        
+        login_button = tk.Button(login_window, text="Login", 
+                                 command=lambda: self.validate_login(
+                                     user_type, 
+                                     username_entry.get(), 
+                                     password_entry.get(), 
+                                     login_window
+                                 ))
+        login_button.pack(pady=10)
+    
+    def on_login_close(self, login_window):
+        """Handle the closing of login window to show main window again"""
+        login_window.destroy()
+        self.root.deiconify()
+    
+    def validate_login(self, user_type, username, password, login_window):
+        credentials = {
+            "admin": self.admin_credential,
+            "student": self.student_credential,
+            "faculty": self.faculty_credential
+        }
+        
+        if username in credentials[user_type] and credentials[user_type][username] == password:
+            login_window.destroy()
+            messagebox.showinfo("Success", f"{user_type.capitalize()} Login Successful")
+            
+            # Open appropriate dashboard
+            if user_type == "admin":
+                self.show_admin_dashboard()
+            elif user_type == "student":
+                self.show_student_dashboard(username)
+            elif user_type == "faculty":
+                self.show_faculty_dashboard(username)
+        else:
+            messagebox.showerror("Error", "Invalid Username or Password")
+    
+    def show_admin_dashboard(self):
+        dashboard = tk.Toplevel(self.root)
+        dashboard.title("Admin Dashboard")
+        dashboard.geometry("800x600")
+        
+        # Add event handler to show the main window when dashboard is closed
+        dashboard.protocol("WM_DELETE_WINDOW", lambda: self.on_dashboard_close(dashboard))
+        
+        # Create notebook (tabbed interface)
+        notebook = ttk.Notebook(dashboard)
+        notebook.pack(expand=True, fill="both", padx=10, pady=10)
+        
+        # Students Tab
+        students_frame = ttk.Frame(notebook)
+        notebook.add(students_frame, text="Students")
+        
+        # Students Treeview
+        students_tree = ttk.Treeview(students_frame, columns=("Username", "Name", "Age", "Course", "Semester", "Contact"), show="headings")
+        students_tree.heading("Username", text="Username")
+        students_tree.heading("Name", text="Name")
+        students_tree.heading("Age", text="Age")
+        students_tree.heading("Course", text="Course")
+        students_tree.heading("Semester", text="Semester")
+        students_tree.heading("Contact", text="Contact")
+        
+        # Populate students data
+        for username, details in self.student_data.items():
+            students_tree.insert("", "end", values=(
+                username,
+                details["name"], 
+                details["age"], 
+                details["course"], 
+                details["semester"], 
+                details["contact"]
+            ))
+        
+        students_tree.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+        
+        # Add Student Form
+        add_student_frame = ttk.Frame(students_frame)
+        add_student_frame.pack(side=tk.BOTTOM, fill=tk.X, pady=10)
+        
+        tk.Label(add_student_frame, text="Add New Student", font=("Arial", 12, "bold")).pack()
+        
+        # Create entry fields for student details
+        student_entries = {}
+        student_fields = [
+            ("Username", "username"),
+            ("Name", "name"),
+            ("Age", "age"),
+            ("Course", "course"),
+            ("Semester", "semester"),
+            ("Contact", "contact")
+        ]
+        
+        for label_text, entry_key in student_fields:
+            tk.Label(add_student_frame, text=f"{label_text}:").pack()
+            entry = tk.Entry(add_student_frame, width=25)
+            entry.pack()
+            student_entries[entry_key] = entry
+        
+        # Add Student Button
+        add_student_button = tk.Button(
+            add_student_frame, 
+            text="Add Student", 
+            command=lambda: self.add_student(
+                students_tree,
+                {key: entry.get() for key, entry in student_entries.items()}
+            )
+        )
+        add_student_button.pack(pady=10)
+        
+        # Faculty Tab 
+        faculty_frame = ttk.Frame(notebook)
+        notebook.add(faculty_frame, text="Faculty")
+        
+        # Create Treeview for faculty
+        faculty_tree = ttk.Treeview(faculty_frame, columns=("Username", "Name", "Department", "Qualification", "Courses"), show="headings")
+        faculty_tree.heading("Username", text="Username")
+        faculty_tree.heading("Name", text="Name")
+        faculty_tree.heading("Department", text="Department")
+        faculty_tree.heading("Qualification", text="Qualification")
+        faculty_tree.heading("Courses", text="Courses")
+        
+        # Populate faculty data
+        for username, details in self.faculty_data.items():
+            faculty_tree.insert("", "end", values=(
+                username,
+                details["name"], 
+                details["department"], 
+                details["qualification"], 
+                ", ".join(details["courses"])
+            ))
+        
+        faculty_tree.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+        
+        # Add Faculty Form
+        add_faculty_frame = ttk.Frame(faculty_frame)
+        add_faculty_frame.pack(side=tk.BOTTOM, fill=tk.X, pady=10)
+        
+        tk.Label(add_faculty_frame, text="Add New Faculty", font=("Arial", 12, "bold")).pack()
+        
+        # Create entry fields for faculty details
+        faculty_entries = {}
+        faculty_fields = [
+            ("Username", "username"),
+            ("Name", "name"),
+            ("Department", "department"),
+            ("Qualification", "qualification"),
+            ("Courses (comma-separated)", "courses")
+        ]
+        
+        for label_text, entry_key in faculty_fields:
+            tk.Label(add_faculty_frame, text=f"{label_text}:").pack()
+            entry = tk.Entry(add_faculty_frame, width=25)
+            entry.pack()
+            faculty_entries[entry_key] = entry
+        
+        # Add Faculty Button
+        add_faculty_button = tk.Button(
+            add_faculty_frame, 
+            text="Add Faculty", 
+            command=lambda: self.add_faculty(
+                faculty_tree,
+                {key: entry.get() for key, entry in faculty_entries.items()}
+            )
+        )
+        add_faculty_button.pack(pady=10)
+        
+        # Results tab - to view all student results
+        results_frame = ttk.Frame(notebook)
+        notebook.add(results_frame, text="Student Results")
+        
+        # Create Treeview for all student results
+        results_tree = ttk.Treeview(results_frame, 
+                                   columns=("Student", "Subject", "Marks", "Result", "Added By"), 
+                                   show="headings")
+        results_tree.heading("Student", text="Student")
+        results_tree.heading("Subject", text="Subject")
+        results_tree.heading("Marks", text="Marks")
+        results_tree.heading("Result", text="Result")
+        results_tree.heading("Added By", text="Added By")
+        
+        # Add scrollbar
+        scrollbar = ttk.Scrollbar(results_frame, orient="vertical", command=results_tree.yview)
+        results_tree.configure(yscrollcommand=scrollbar.set)
+        scrollbar.pack(side="right", fill="y")
+        results_tree.pack(expand=True, fill="both", padx=10, pady=10)
+        
+        # Populate all student results
+        for student, results in self.student_results.items():
+            for result in results:
+                # Get student name
+                student_name = self.student_data.get(student, {}).get("name", student)
+                results_tree.insert("", "end", values=(
+                    f"{student_name} ({student})",
+                    result.get('subject', 'N/A'),
+                    f"{result.get('marks', 0):.2f}",
+                    result.get('result', 'N/A'),
+                    result.get('added_by', 'N/A')
+                ))
+    
+    def on_dashboard_close(self, dashboard):
+        """Handle the closing of dashboard to show main window again"""
+        dashboard.destroy()
+        self.root.deiconify()
+    
+    def add_student(self, tree, student_data):
+        # Validate input
+        if not all(student_data.values()):
+            messagebox.showerror("Error", "All fields are required!")
+            return
+        
+        username = student_data['username']
+        
+        try:
+            student_data['age'] = int(student_data['age'])
+            student_data['semester'] = int(student_data['semester'])
+        except ValueError:
+            messagebox.showerror("Error", "Age and Semester must be numbers!")
+            return
+        
+        # Check if username already exists
+        if username in self.student_data:
+            messagebox.showerror("Error", "Username already exists!")
+            return
+        
+        # Add student to dictionary
+        self.student_data[username] = {
+            "name": student_data['name'],
+            "age": student_data['age'],
+            "course": student_data['course'],
+            "semester": student_data['semester'],
+            "contact": student_data['contact']
+        }
+        
+        # Add student to credential dictionary with a default password
+        self.student_credential[username] = "student123"
+        
+        # Initialize empty results list for the new student
+        self.student_results[username] = []
+        
+        # Add to treeview
+        tree.insert("", "end", values=(
+            username, 
+            student_data['name'], 
+            student_data['age'], 
+            student_data['course'], 
+            student_data['semester'], 
+            student_data['contact']
+        ))
+        
+        # Show success message
+        messagebox.showinfo("Success", f"Student {student_data['name']} added successfully!\nDefault password: student123")
+    
+    def add_faculty(self, tree, faculty_data):
+        # Validate input
+        if not all(faculty_data.values()):
+            messagebox.showerror("Error", "All fields are required!")
+            return
+        
+        username = faculty_data['username']
+        
+        # Check if username already exists
+        if username in self.faculty_data:
+            messagebox.showerror("Error", "Username already exists!")
+            return
+        
+        # Split courses into a list
+        courses_list = [course.strip() for course in faculty_data['courses'].split(',')]
+        
+        # Add faculty to dictionary
+        self.faculty_data[username] = {
+            "name": faculty_data['name'],
+            "department": faculty_data['department'],
+            "qualification": faculty_data['qualification'],
+            "courses": courses_list
+        }
+        
+        # Add faculty to credential dictionary with a default password
+        self.faculty_credential[username] = "faculty123"
+        
+        # Add to treeview
+        tree.insert("", "end", values=(
+            username, 
+            faculty_data['name'], 
+            faculty_data['department'], 
+            faculty_data['qualification'], 
+            ", ".join(courses_list)
+        ))
+        
+        # Show success message
+        messagebox.showinfo("Success", f"Faculty {faculty_data['name']} added successfully!\nDefault password: faculty123")
+    
+    def show_faculty_dashboard(self, username):
+        dashboard = tk.Toplevel(self.root)
+        dashboard.title(f"Faculty Dashboard - {username}")
+        dashboard.geometry("800x600")
+        
+        # Add event handler to show the main window when dashboard is closed
+        dashboard.protocol("WM_DELETE_WINDOW", lambda: self.on_dashboard_close(dashboard))
+        
+        # Get faculty name
+        faculty_name = self.faculty_data.get(username, {}).get("name", username)
+        
+        # Welcome label
+        tk.Label(dashboard, text=f"Welcome, {faculty_name}!", 
+                font=("Arial", 16, "bold")).pack(pady=10)
+        
+        # Create notebook (tabbed interface)
+        notebook = ttk.Notebook(dashboard)
+        notebook.pack(expand=True, fill="both", padx=10, pady=10)
+        
+        # Personal Details Frame
+        details_frame = tk.Frame(notebook)
+        notebook.add(details_frame, text="Personal Details")
+        
+        # Display faculty details
+        faculty_info = self.faculty_data.get(username, {})
+        personal_details = [
+            f"Name: {faculty_info.get('name', 'N/A')}",
+            f"Department: {faculty_info.get('department', 'N/A')}",
+            f"Qualification: {faculty_info.get('qualification', 'N/A')}",
+            f"Courses: {', '.join(faculty_info.get('courses', ['N/A']))}"
+        ]
+        
+        for detail in personal_details:
+            tk.Label(details_frame, text=detail, font=("Arial", 12)).pack(anchor="w", padx=20, pady=5)
+        
+        # Student Result Management Frame
+        results_frame = tk.Frame(notebook)
+        notebook.add(results_frame, text="Student Results")
+        
+        # Left side: Add new results
+        add_result_frame = tk.Frame(results_frame)
+        add_result_frame.pack(side=tk.LEFT, fill=tk.BOTH, expand=True, padx=10, pady=10)
+        
+        tk.Label(add_result_frame, text="Add New Result", font=("Arial", 14, "bold")).pack(pady=10)
+        
+        # Student Selection
+        tk.Label(add_result_frame, text="Select Student:", font=("Arial", 12)).pack(anchor="w")
+        student_var = tk.StringVar()
+        student_dropdown = ttk.Combobox(add_result_frame, textvariable=student_var, 
+                                        values=list(self.student_data.keys()), 
+                                        state="readonly", width=30)
+        student_dropdown.pack(pady=5, anchor="w")
+        
+        # Show student info when selected
+        def show_student_info(*args):
+            selected_student = student_var.get()
+            if selected_student in self.student_data:
+                student_info = self.student_data[selected_student]
+                student_info_label.config(
+                    text=f"Name: {student_info['name']}\n"
+                         f"Course: {student_info['course']}\n"
+                         f"Semester: {student_info['semester']}"
+                )
+            else:
+                student_info_label.config(text="")
+        
+        student_var.trace("w", show_student_info)
+        student_info_label = tk.Label(add_result_frame, text="", font=("Arial", 10), justify=tk.LEFT)
+        student_info_label.pack(anchor="w", pady=5)
+        
+        # Subject Entry
+        tk.Label(add_result_frame, text="Subject:", font=("Arial", 12)).pack(anchor="w")
+        subject_entry = tk.Entry(add_result_frame, width=30)
+        subject_entry.pack(pady=5, anchor="w")
+        
+        # Marks Entry
+        tk.Label(add_result_frame, text="Marks:", font=("Arial", 12)).pack(anchor="w")
+        marks_entry = tk.Entry(add_result_frame, width=30)
+        marks_entry.pack(pady=5, anchor="w")
+        
+        # Result Entry (Pass/Fail)
+        tk.Label(add_result_frame, text="Result:", font=("Arial", 12)).pack(anchor="w")
+        result_var = tk.StringVar(value="Pass")
+        result_dropdown = ttk.Combobox(add_result_frame, textvariable=result_var, 
+                                       values=["Pass", "Fail"], 
+                                       state="readonly", width=30)
+        result_dropdown.pack(pady=5, anchor="w")
+        
+        # Comments Entry
+        tk.Label(add_result_frame, text="Comments (optional):", font=("Arial", 12)).pack(anchor="w")
+        comments_entry = tk.Text(add_result_frame, width=30, height=4)
+        comments_entry.pack(pady=5, anchor="w")
+        
+        # Right side: View results
+        view_result_frame = tk.Frame(results_frame)
+        view_result_frame.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True, padx=10, pady=10)
+        
+        tk.Label(view_result_frame, text="Added Results", font=("Arial", 14, "bold")).pack(pady=10)
+        
+        # Results Treeview
+        results_tree = ttk.Treeview(view_result_frame, 
+                                   columns=("Student", "Subject", "Marks", "Result"), 
+                                   show="headings")
+        results_tree.heading("Student", text="Student")
+        results_tree.heading("Subject", text="Subject")
+        results_tree.heading("Marks", text="Marks")
+        results_tree.heading("Result", text="Result")
+        
+        # Add scrollbar
+        scrollbar = ttk.Scrollbar(view_result_frame, orient="vertical", command=results_tree.yview)
+        results_tree.configure(yscrollcommand=scrollbar.set)
+        scrollbar.pack(side="right", fill="y")
+        results_tree.pack(pady=10, expand=True, fill='both')
+        
+        # Function to add result
+        def add_result():
+            student = student_var.get()
+            subject = subject_entry.get()
+            marks_str = marks_entry.get()
+            result = result_var.get()
+            comments = comments_entry.get("1.0", tk.END).strip()
+            
+            # Validate inputs
+            if not student or not subject or not marks_str:
+                messagebox.showerror("Error", "Student, Subject, and Marks are required!")
+                return
+            
+            try:
+                marks = float(marks_str)
+                if marks < 0 or marks > 100:
+                    raise ValueError("Marks must be between 0 and 100")
+            except ValueError as e:
+                messagebox.showerror("Error", f"Invalid marks: {str(e)}")
+                return
+            
+            # Store result
+            if student not in self.student_results:
+                self.student_results[student] = []
+            
+            # Add result with faculty information
+            result_entry = {
+                "subject": subject,
+                "marks": marks,
+                "result": result,
+                "comments": comments,
+                "added_by": faculty_name,
+                "faculty_username": username,
+                "date_added": tk.StringVar().get()  # This will get current date/time
+            }
+            self.student_results[student].append(result_entry)
+            
+            # Add to treeview
+            student_name = self.student_data[student]["name"]
+            results_tree.insert("", "end", values=(
+                student_name, 
+                subject, 
+                f"{marks:.2f}", 
+                result
+            ))
+            
+            # Clear entries
+            subject_entry.delete(0, tk.END)
+            marks_entry.delete(0, tk.END)
+            comments_entry.delete("1.0", tk.END)
+            
+            messagebox.showinfo("Success", f"Result added successfully for {student_name}!")
+        
+        # Add Result Button
+        add_result_button = tk.Button(add_result_frame, text="Add Result", command=add_result,
+                                     bg="#4CAF50", fg="white", font=("Arial", 12))
+        add_result_button.pack(pady=20)
+        
+        # Populate existing results added by this faculty
+        for student, results in self.student_results.items():
+            student_name = self.student_data.get(student, {}).get("name", student)
+            for result in results:
+                # Only show results added by this faculty
+                if result.get('faculty_username') == username:
+                    results_tree.insert("", "end", values=(
+                        student_name, 
+                        result['subject'], 
+                        f"{result['marks']:.2f}", 
+                        result['result']
+                    ))
+    
+    def show_student_dashboard(self, username):
+        dashboard = tk.Toplevel(self.root)
+        dashboard.title(f"Student Dashboard - {username}")
+        dashboard.geometry("800x600")
+        
+        # Add event handler to show the main window when dashboard is closed
+        dashboard.protocol("WM_DELETE_WINDOW", lambda: self.on_dashboard_close(dashboard))
+        
+        # Display student details
+        student_info = self.student_data.get(username, {})
+        
+        tk.Label(dashboard, text=f"Welcome, {student_info.get('name', username)}!", 
+                 font=("Arial", 16, "bold")).pack(pady=10)
+        
+        # Create notebook for tabs
+        notebook = ttk.Notebook(dashboard)
+        notebook.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
+        
+        # Personal Details Tab
+        details_frame = tk.Frame(notebook)
+        notebook.add(details_frame, text="Personal Details")
+        
+        personal_details = [
+            f"Name: {student_info.get('name', 'N/A')}",
+            f"Course: {student_info.get('course', 'N/A')}",
+            f"Semester: {student_info.get('semester', 'N/A')}",
+            f"Age: {student_info.get('age', 'N/A')}",
+            f"Contact: {student_info.get('contact', 'N/A')}"
+        ]
+        
+        for detail in personal_details:
+            tk.Label(details_frame, text=detail, font=("Arial", 12)).pack(anchor="w", padx=20, pady=5)
+        
+        # Results Tab
+        results_frame = tk.Frame(notebook)
+        notebook.add(results_frame, text="My Results")
+        
+        # Add a refresh button
+        refresh_button = tk.Button(results_frame, text="Refresh Results", 
+                                  command=lambda: self.refresh_student_results(results_tree, username))
+        refresh_button.pack(pady=10, anchor="e", padx=10)
+        
+        # Results Treeview with more details
+        results_tree = ttk.Treeview(results_frame, 
+                                   columns=("Subject", "Marks", "Result", "Added By", "Comments"), 
+                                   show="headings")
+        results_tree.heading("Subject", text="Subject")
+        results_tree.heading("Marks", text="Marks")
+        results_tree.heading("Result", text="Result")
+        results_tree.heading("Added By", text="Faculty")
+        results_tree.heading("Comments", text="Comments")
+        
+        # Set column widths
+        results_tree.column("Subject", width=150)
+        results_tree.column("Marks", width=80)
+        results_tree.column("Result", width=80)
+        results_tree.column("Added By", width=150)
+        results_tree.column("Comments", width=250)
+        
+        # Add scrollbars
+        y_scrollbar = ttk.Scrollbar(results_frame, orient="vertical", command=results_tree.yview)
+        results_tree.configure(yscrollcommand=y_scrollbar.set)
+        y_scrollbar.pack(side="right", fill="y")
+        
+        x_scrollbar = ttk.Scrollbar(results_frame, orient="horizontal", command=results_tree.xview)
+        results_tree.configure(xscrollcommand=x_scrollbar.set)
+        x_scrollbar.pack(side="bottom", fill="x")
+        
+        results_tree.pack(expand=True, fill='both', padx=10, pady=10)
+        
+        # Summary frame at the bottom
+        summary_frame = tk.Frame(results_frame)
+        summary_frame.pack(fill=tk.X, padx=10, pady=10)
+        
+        # Calculate and display summary statistics
+        self.update_result_summary(summary_frame, username)
+        
+        # Populate student results
+        self.refresh_student_results(results_tree, username)
+    
+    def refresh_student_results(self, tree, username):
+        """Refresh the student results treeview"""
+        # Clear existing items
+        for item in tree.get_children():
+            tree.delete(item)
+        
+        # Populate with latest results
+        student_results = self.student_results.get(username, [])
+        for result in student_results:
+            tree.insert("", "end", values=(
+                result.get('subject', 'N/A'), 
+                f"{result.get('marks', 0):.2f}", 
+                result.get('result', 'N/A'),
+                result.get('added_by', 'N/A'),
+                result.get('comments', '')
+            ))
+    
+    def update_result_summary(self, frame, username):
+        """Update the summary statistics in the given frame"""
+        # Clear existing widgets
+        for widget in frame.winfo_children():
+            widget.destroy()
+        
+        # Calculate statistics
+        results = self.student_results.get(username, [])
+        if not results:
+            tk.Label(frame, text="No results available", font=("Arial", 12)).pack()
+            return
+        
+        # Calculate average marks, number of passed subjects, etc.
+        total_subjects = len(results)
+        passed_subjects = sum(1 for r in results if r.get('result') == 'Pass')
+        failed_subjects = total_subjects - passed_subjects
+        
+        if total_subjects > 0:
+            total_marks = sum(r.get('marks', 0) for r in results)
+            average_marks = total_marks / total_subjects
+            pass_percentage = (passed_subjects / total_subjects) * 100
+        else:
+            average_marks = 0
+            pass_percentage = 0
+        
+        # Display statistics
+        stats_frame = tk.Frame(frame)
+        stats_frame.pack()
+        
+        stats = [
+            f"Total Subjects: {total_subjects}",
+            f"Average Marks: {average_marks:.2f}",
+            f"Passed Subjects: {passed_subjects}",
+            f"Failed Subjects: {failed_subjects}",
+            f"Pass Percentage: {pass_percentage:.2f}%"
+        ]
+        
+        for i, stat in enumerate(stats):
+            tk.Label(stats_frame, text=stat, font=("Arial", 12)).grid(row=i//3, column=i%3, padx=20, pady=5, sticky="w")
+
+# Main application setup
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = LoginSystem(root)
+    root.mainloop()
