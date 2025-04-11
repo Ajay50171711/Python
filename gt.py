@@ -8,16 +8,16 @@ class Account:
         self.Balance = Balance
     
     def display(self):
-        return f"Name: {self.name}\nAccount Number: {self.Acc_no}\nBalance: ${self.Balance:.2f}"
+        return f"Name: {self.name}\nAccount Number: {self.Acc_no}\nBalance: \u20B9{self.Balance:.2f}"
     
     def credit(self, cd):
         self.Balance = self.Balance + cd
-        return f"${cd:.2f} credited. New balance: ${self.Balance:.2f}"
+        return f"\u20B9{cd:.2f} credited. New balance: \u20B9{self.Balance:.2f}"
     
     def debit(self, db):
         if db < self.Balance:
             self.Balance = self.Balance - db
-            return f"${db:.2f} debited. New balance: ${self.Balance:.2f}"
+            return f"\u20B9{db:.2f} debited. New balance: \u20B9{self.Balance:.2f}"
         else:
             return "Not Sufficient Balance"
 
@@ -26,7 +26,7 @@ class BankingApp:
         self.root = root
         self.account = account
         self.root.title("Banking System")
-        self.root.geometry("400x500")
+        self.root.geometry("400x650")
         self.root.resizable(False, False)
      
         
@@ -34,13 +34,14 @@ class BankingApp:
         header_frame = tk.Frame(root, bg="#2c3e50", height=80)
         header_frame.pack(fill=tk.X)
         
-        tk.Label(
+        header=tk.Label(
             header_frame, 
             text="Banking System", 
             font=("Arial", 24, "bold"), 
             bg="#2c3e50", 
             fg="white"
-        ).pack(pady=20)
+        )
+        header.pack(pady=20)
         
         # Account information
         info_frame = tk.Frame(root, bg="#f0f0f0", pady=20)
@@ -84,7 +85,7 @@ class BankingApp:
         
         tk.Label(
             amount_frame,
-            text="Amount ($):",
+            text="Amount (\u20B9):",
             font=("Arial", 12),
             bg="#f0f0f0"
         ).pack(side=tk.LEFT, padx=5)
@@ -148,7 +149,7 @@ class BankingApp:
         
         tk.Label(
             footer_frame,
-            text="© 2025 Banking System",
+            text="© 2025 Banking System", 
             font=("Arial", 10),
             bg="#2c3e50",
             fg="white"
@@ -158,7 +159,7 @@ class BankingApp:
         self.add_transaction("Account opened")
 
     def update_balance_display(self):
-        self.balance_var.set(f"Balance: ${self.account.Balance:.2f}")
+        self.balance_var.set(f"Balance: \u20B9{self.account.Balance:.2f}")
     
     def get_amount(self):
         try:
@@ -176,7 +177,7 @@ class BankingApp:
         if amount:
             result = self.account.credit(amount)
             self.update_balance_display()
-            self.add_transaction(f"Deposited: ${amount:.2f}")
+            self.add_transaction(f"Deposited: \u20B9{amount:.2f}")
             messagebox.showinfo("Success", result)
             self.amount_entry.delete(0, tk.END)
     
@@ -186,18 +187,18 @@ class BankingApp:
             result = self.account.debit(amount)
             if "Not Sufficient" not in result:
                 self.update_balance_display()
-                self.add_transaction(f"Withdrew: ${amount:.2f}")
+                self.add_transaction(f"Withdrew: \u20B9{amount:.2f}")
             messagebox.showinfo("Transaction Result", result)
             self.amount_entry.delete(0, tk.END)
     
     def add_transaction(self, transaction_text):
         timestamp = tk.StringVar()
-        import datetime
-        now = datetime.datetime.now()
+        from datetime import datetime
+        now = datetime.now()
         timestamp = now.strftime("%H:%M:%S")
         
         self.transaction_history.insert(
-            tk.END, 
+            "1.0", #tk.END
             f"[{timestamp}] {transaction_text}\n"
         )
         self.transaction_history.see(tk.END)  # Scroll to the bottom
