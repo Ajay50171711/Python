@@ -1,90 +1,79 @@
+s1 = {1,2,3,3,4}
+print(s1)
+s1.add(12)
+print(s1)
+s1.update({10,5,20,30})
+print(s1)
 
-🐍 Python Set – Complete Notes
-1️⃣ Introduction
-Definition: A set is an unordered, mutable, and unindexed collection of unique elements.
+for i in s1:
+    print(i)
+s1.remove(12)
+print(s1)
+#s1.remove(100)
+s1.discard(100)
+x = s1.pop()
+y = s1.pop()
+print(x,y)
+print(s1)
 
-Key Features:
+s2 = s1.copy()
+print(s2)
 
-No duplicate elements.
+s1 = {1,2,3,4}
+s2 = {3,4,5,6}
+print(s1.union(s2))
+print(s1.intersection(s2))
+print(s1.difference(s2))
+print(s1.symmetric_difference(s2))
 
-Elements must be hashable (immutable types like numbers, strings, tuples).
+a = {1,2}
+b = {1,2,3,4}
+c = {5,6}
 
-Sets themselves are mutable, but set elements must be immutable.
+print(a.issubset(b))
+print(b.issuperset(a))
+print(a.isdisjoint(c))
 
-2️⃣ Creating Sets
-# Empty set
-s = set()          # ✅ Correct way
-s = {}             # ❌ Creates a dictionary, not a set
+print(len(a))
+print(sorted(a))
+print(max(b))
+print(sum(a))
+print(min(a))
 
-# With elements
-numbers = {1, 2, 3}
-mixed = {1, 2.5, "hello", (3, 4)}
-⚠️ Lists, dicts, and other sets cannot be elements because they are not hashable.
 
-3️⃣ Adding & Removing Elements
-Operation	Method/Operator	Example
-Add single element	add()	s.add(5)
-Add multiple elements	update(iterable)	s.update([6,7], {8,9})
-Remove specific element	remove(x) (error if x not found)	s.remove(5)
-Remove safely	discard(x) (no error if missing)	s.discard(10)
-Remove & return random	pop()	s.pop()
-Remove all elements	clear()	s.clear()
-4️⃣ Set Operations
-Python sets support mathematical set operations:
+=========================================================
 
-Operation	Operator	Method	Example
-Union	`	`	union()
-Intersection	&	intersection()	A & B
-Difference	-	difference()	A - B
-Symmetric Difference	^	symmetric_difference()	A ^ B
-A = {1, 2, 3}
-B = {3, 4, 5}
+'''
+Operator
 
-print(A | B)   # {1,2,3,4,5}
-print(A & B)   # {3}
-print(A - B)   # {1,2}
-print(A ^ B)   # {1,2,4,5}
-5️⃣ Membership & Iteration
-if 2 in A:  
-    print("Present")
+Equivalent method
 
-for item in A:
-    print(item)
-Sets are unordered, so iteration order is not guaranteed.
+A | B
 
-6️⃣ Set Comparisons
-Operation	Example	Meaning
-Subset	A <= B or A.issubset(B)	All elements of A are in B
-Proper Subset	A < B	A is subset of B and A != B
-Superset	A >= B or A.issuperset(B)	B is subset of A
-Proper Superset	A > B	A is superset of B and A != B
-Disjoint	A.isdisjoint(B)	True if A and B have no common elements
-7️⃣ Built-in Functions
-Function	Description	Example
-len(s)	Number of elements	len(A)
-min(s), max(s)	Minimum/Maximum element (for comparable types)	min({5, 2, 9}) → 2
-sum(s)	Sum of numeric elements	sum({1,2,3}) → 6
-sorted(s)	Returns a sorted list	sorted(A)
-8️⃣ Frozenset (Immutable Set)
-Immutable version of a set.
+A.union(B)
 
-Hashable → can be used as dict keys or elements of another set.
+A & B
 
-fs = frozenset([1, 2, 3])
-# fs.add(4)  # ❌ Error
-9️⃣ Set Comprehension
-Similar to list comprehension but creates a set.
+A.intersection(B)
 
-squares = {x**2 for x in range(5)}
-print(squares)   # {0, 1, 4, 9, 16}
-🔟 Practical Tips & Gotchas
-Duplicates are automatically removed:
-{1, 2, 2, 3} → {1, 2, 3}
+A - B
 
-Unhashable elements:
-{[1,2], 3} ❌ (lists are mutable)
+A.difference(B)
 
-Sets are faster than lists for membership tests: x in set is O(1) average.
+A ^ B
+
+A.symmetric_difference(B)
+
+A <= B
+
+A.issubset(B)
+
+A >= B
+
+A.issuperset(B)
+
+'''   
+===========================================================
 
 🏁 Real-life Use Cases
 Remove duplicates from a list:
